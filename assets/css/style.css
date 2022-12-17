@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+    background-color: rgb(89, 89, 244);
+    color: white;
+}
+
+#search{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 120px;
+}
+
+input{
+    width: 192px;
+}
+
+button{
+    width: 200px;
+    background-color:rgb(97, 172, 204); 
+    color:white;
+}
