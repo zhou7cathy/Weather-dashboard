@@ -28,10 +28,6 @@ main{
     flex-direction: row;
 }
 
-#current-weather{
-    margin-left: 50px;
-}
-
 #weather-forecast{
     display: flex;
     flex-direction: row;

@@ -4,6 +4,7 @@ var searchInput = document.querySelector('#search-input');
 var cityList = document.querySelector('#city-list');
 var currentWeather = document.querySelector('#current-weather');
 var weatherForecast = document.querySelector('#weather-forecast');
+var today = dayjs().format('DD/MM/YYYY')
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
@@ -27,7 +28,7 @@ function handleSearchFormSubmit(event) {
     .then(function (data) {
       console.log(data);
       var cityName = document.createElement('h2');
-      cityName.textContent = data.city.name;
+      cityName.textContent = data.city.name + " (" + today + ")";
     
       var CurrentTemperature = document.createElement('p');
         var CurrentWind = document.createElement('p');
@@ -41,6 +42,10 @@ function handleSearchFormSubmit(event) {
         currentWeather.append(CurrentTemperature);
         currentWeather.append(CurrentWind);
         currentWeather.append(CurrentHumidity);
+
+        currentWeather.style.margin = "0 0 20px 50px";
+        currentWeather.style.borderStyle = "solid";
+        currentWeather.style.padding = "5px";
 
       for (var i = 1; i < data.list.length; i++) {
         var tempContainer = document.createElement('div');
@@ -57,6 +62,8 @@ function handleSearchFormSubmit(event) {
         tempContainer.append(wind);
         tempContainer.append(humidity);
         weatherForecast.append(tempContainer);
+
+
       }
     });
 }
