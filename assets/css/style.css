@@ -22,3 +22,25 @@ button{
     background-color:rgb(97, 172, 204); 
     color:white;
 }
+
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+#current-weather{
+    margin-left: 50px;
+}
+
+#weather-forecast{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+}
+
+div{
+    margin-right: 30px;
+    padding: 5px;
+    background-color: rgb(17, 17, 49);
+    color: white;
+}
