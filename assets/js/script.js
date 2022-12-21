@@ -18,7 +18,7 @@ function handleSearchFormSubmit(event) {
   //fetch & display weather 
   //presented with the city name, the date, an icon representation of 
   //weather conditions, the temperature, the humidity, and the the wind speed
-	fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + searchInputVal + '&cnt=6&appid=ebd7da536e83a54f2481bdf80529f379')
+	fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + searchInputVal + '&cnt=6&units=metric&appid=ebd7da536e83a54f2481bdf80529f379')
     .then(function (response) {
 			if (response.status !== 200) {
         alert('City not found, please try again.')
@@ -34,9 +34,9 @@ function handleSearchFormSubmit(event) {
         var CurrentWind = document.createElement('p');
         var CurrentHumidity = document.createElement('p');
 
-        CurrentTemperature.textContent = "Temp: " + data.list[0].main.temp + "°F";
-        CurrentWind.textContent = "Wind: " + data.list[0].wind.gust + "MPH";
-        CurrentHumidity.textContent = "Humidity: " + data.list[0].main.humidity + "%";
+        CurrentTemperature.textContent = "Temp: " + data.list[0].main.temp + " °C";
+        CurrentWind.textContent = "Wind: " + data.list[0].wind.speed + " m/s";
+        CurrentHumidity.textContent = "Humidity: " + data.list[0].main.humidity + " %";
         
         currentWeather.append(cityName);
         currentWeather.append(CurrentTemperature);
@@ -54,9 +54,9 @@ function handleSearchFormSubmit(event) {
         var wind = document.createElement('p');
         var humidity = document.createElement('p');
 
-        temperature.textContent ="Temp: " + data.list[i].main.temp + "°F";        
-        wind.textContent = "Wind: " + data.list[i].wind.gust + "MPH";
-        humidity.textContent = "Humidity: "+ data.list[i].main.humidity + "%";
+        temperature.textContent ="Temp: " + data.list[i].main.temp + " °C";        
+        wind.textContent = "Wind: " + data.list[i].wind.speed + " m/s";
+        humidity.textContent = "Humidity: "+ data.list[i].main.humidity + " %";
         
         tempContainer.append(temperature);
         tempContainer.append(wind);
