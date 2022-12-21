@@ -28,6 +28,11 @@ main{
     flex-direction: row;
 }
 
+#current-weather{
+    background-color: rgb(17, 17, 49);
+    color: white;
+}
+
 #weather-forecast{
     display: flex;
     flex-direction: row;

@@ -31,39 +31,45 @@ function handleSearchFormSubmit(event) {
       
       var CurrentTemperature = document.createElement('p');
       var CurrentDate = document.createElement('p');
+      var weatherCondition = document.createElement('img');
       var CurrentWind = document.createElement('p');
       var CurrentHumidity = document.createElement('p');
 
       CurrentTemperature.textContent = "Temp: " + data.list[0].main.temp + " °C";
       CurrentDate.textContent =data.list[0].dt_txt;
+      weatherCondition.setAttribute("src", "http://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+"@2x.png")
       CurrentWind.textContent = "Wind: " + data.list[0].wind.speed + " m/s";
       CurrentHumidity.textContent = "Humidity: " + data.list[0].main.humidity + " %";
         
       currentWeather.append(cityName);
       currentWeather.append(CurrentDate);
       currentWeather.append(CurrentTemperature);
+      currentWeather.append(weatherCondition);
       currentWeather.append(CurrentWind);
       currentWeather.append(CurrentHumidity);
 
       currentWeather.style.margin = "0 0 20px 50px";
       currentWeather.style.borderStyle = "solid";
-        currentWeather.style.padding = "5px";
+      currentWeather.style.padding = "5px";
 
       for (var i = 0; i < data.list.length; i=i+8) {
         var tempContainer = document.createElement('div');
 
         var date = document.createElement('p');
         var temperature = document.createElement('p');
+        var weather = document.createElement('img');
         var wind = document.createElement('p');
         var humidity = document.createElement('p');
 
         date.textContent =data.list[i].dt_txt;
-        temperature.textContent ="Temp: " + data.list[i].main.temp + " °C";        
+        temperature.textContent ="Temp: " + data.list[i].main.temp + " °C";  
+        weather.setAttribute("src", "http://openweathermap.org/img/wn/"+data.list[i].weather[0].icon+"@2x.png")      
         wind.textContent = "Wind: " + data.list[i].wind.speed + " m/s";
         humidity.textContent = "Humidity: "+ data.list[i].main.humidity + " %";
         
         tempContainer.append(date);
         tempContainer.append(temperature);
+        tempContainer.append(weather);
         tempContainer.append(wind);
         tempContainer.append(humidity);
         weatherForecast.append(tempContainer);
