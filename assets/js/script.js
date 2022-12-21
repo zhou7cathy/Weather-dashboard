@@ -17,10 +17,10 @@ function handleSearchFormSubmit(event) {
   fetchWhether(searchInputVal);
 }
 
+searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+
+//fetch & display weather 
 function fetchWhether(city){
-  //fetch & display weather 
-  //presented with the city name, the date, an icon representation of 
-  //weather conditions, the temperature, the humidity, and the the wind speed
 	fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=ebd7da536e83a54f2481bdf80529f379')
   .then(function (response) {
     if (response.status !== 200) {
@@ -85,7 +85,7 @@ function fetchWhether(city){
       weatherForecast.append(tempContainer);
     }
 
-    //local storage to save search result and create location button
+    //Save search results to local storage
     if (city != null){
       var history = JSON.parse(localStorage.getItem("History"));
       if(history != null) {
@@ -100,19 +100,24 @@ function fetchWhether(city){
   });
 }
 
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);
-
+//get history and create buttons
 function renderHistory(){
-  historyBtn.innerHTML = '';
   var history = JSON.parse(localStorage.getItem("History"));
   if(history != null) {
+    historyBtn.innerHTML = '';
     for (let i = 0; i < history.length; i++){
         let historyButton = document.createElement('button');
+        historyButton.addEventListener('click', handleButtonClick);
         historyButton.innerText = history[i];
         historyBtn.appendChild(historyButton);
     }
   } 
   searchFormEl.reset();
+
+  //fetch weather for click event on history buttons
+  function handleButtonClick(event){
+    fetchWhether(event.target.innerHTML)
+  }
  }
 
 renderHistory();

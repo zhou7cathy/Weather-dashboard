@@ -40,14 +40,14 @@ main{
     margin-left: 50px;
 }
 
+#history-button{
+    background-color:white; 
+    color:black;
+}
+
 div{
     margin-right: 30px;
     padding: 5px;
     background-color: rgb(17, 17, 49);
     color: white;
-}
-
-#history-button{
-    background-color:white; 
-    color:black;
 }
