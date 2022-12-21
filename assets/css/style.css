@@ -21,6 +21,7 @@ button{
     width: 200px;
     background-color:rgb(97, 172, 204); 
     color:white;
+    margin-bottom: 10px;
 }
 
 main{
@@ -46,7 +47,7 @@ div{
     color: white;
 }
 
-ul{
-    list-style: none;
+#history-button{
+    background-color:white; 
+    color:black;
 }
-
