@@ -45,3 +45,8 @@ div{
     background-color: rgb(17, 17, 49);
     color: white;
 }
+
+ul{
+    list-style: none;
+}
+

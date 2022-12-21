@@ -1,14 +1,15 @@
 //EventListener for search button
 var searchFormEl = document.querySelector('#search-form');
 var searchInput = document.querySelector('#search-input');
-var cityList = document.querySelector('#city-list');
+var historyList = document.querySelector('#history-list');
 var currentWeather = document.querySelector('#current-weather');
 var weatherForecast = document.querySelector('#weather-forecast');
+var searchHistory = [];
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
-  var searchInputVal = searchInput.value;
+  searchInputVal = searchInput.value;
   if (!searchInputVal) {
     alert('You need a search input value!');
     return;
@@ -40,18 +41,24 @@ function handleSearchFormSubmit(event) {
       weatherCondition.setAttribute("src", "http://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+"@2x.png")
       CurrentWind.textContent = "Wind: " + data.list[0].wind.speed + " m/s";
       CurrentHumidity.textContent = "Humidity: " + data.list[0].main.humidity + " %";
-        
+      
+      currentWeather.innerHTML = "";
       currentWeather.append(cityName);
+      currentWeather.append(weatherCondition);
       currentWeather.append(CurrentDate);
       currentWeather.append(CurrentTemperature);
-      currentWeather.append(weatherCondition);
       currentWeather.append(CurrentWind);
       currentWeather.append(CurrentHumidity);
 
       currentWeather.style.margin = "0 0 20px 50px";
       currentWeather.style.borderStyle = "solid";
       currentWeather.style.padding = "5px";
+      weatherCondition.style.position = "absolute";
+      weatherCondition.style.marginLeft = "100px";
+      weatherCondition.style.marginTop = "20px";
+      weatherCondition.style.width= "50px";
 
+      weatherForecast.innerHTML = "";
       for (var i = 0; i < data.list.length; i=i+8) {
         var tempContainer = document.createElement('div');
 
@@ -68,15 +75,35 @@ function handleSearchFormSubmit(event) {
         humidity.textContent = "Humidity: "+ data.list[i].main.humidity + " %";
         
         tempContainer.append(date);
-        tempContainer.append(temperature);
         tempContainer.append(weather);
+        tempContainer.append(temperature);
         tempContainer.append(wind);
         tempContainer.append(humidity);
         weatherForecast.append(tempContainer);
       }
+
+      //local storage to save search result and create location button
+      if (searchInputVal != null){
+        searchHistory.push(searchInputVal);
+      }
+      localStorage.setItem('History', searchHistory);
+
+      renderHistory()
     });
 }
 
-  searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
-//local storage to save search result and create location button
+function renderHistory(){
+  historyList.innerHTML = '';
+  localStorage.getItem("searchHistory");
+  if(searchHistory != null) {
+    for (let i = 0; i < searchHistory.length; i++){
+        let list = document.createElement('li');
+        list.innerText = searchHistory[i];
+        historyList.appendChild(list);
+    }
+  } 
+  searchFormEl.reset();
+ }
+
